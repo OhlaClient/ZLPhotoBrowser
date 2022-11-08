@@ -362,6 +362,8 @@ class ZLPhotoPreviewController: UIViewController {
 //        selectBtn.addSubview(indexLabel)
         view.addSubview(collectionView)
         view.addSubview(bottomView)
+        // 在ohla项目中由于更改了 UIView.appearance().semanticContentAttribute, 导致预览页展示的图片索引反了
+        collectionView.semanticContentAttribute = .forceLeftToRight
         
         if let effect = ZLPhotoUIConfiguration.default().bottomViewBlurEffectOfPreview {
             bottomBlurView = UIVisualEffectView(effect: effect)
@@ -994,6 +996,7 @@ class ZLPhotoPreviewSelectedView: UIView, UICollectionViewDataSource, UICollecti
     
     private func setupUI() {
         addSubview(collectionView)
+        collectionView.semanticContentAttribute = .forceLeftToRight
     }
     
     @available(*, unavailable)
