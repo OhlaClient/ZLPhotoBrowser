@@ -1355,7 +1355,8 @@ extension ZLThumbnailViewController: UICollectionViewDataSource, UICollectionVie
         let canEditImage = config.editAfterSelectThumbnailImage &&
             config.allowEditImage &&
             config.maxSelectCount == 1 &&
-            model.type.rawValue < ZLPhotoModel.MediaType.video.rawValue
+            model.type.rawValue < ZLPhotoModel.MediaType.video.rawValue &&
+            !(model.type.rawValue == ZLPhotoModel.MediaType.gif.rawValue && config.allowSelectGif) // 允许选择gif并且选中gif时，不直接进入编辑页
         
         let canEditVideo = (config.editAfterSelectThumbnailImage &&
             config.allowEditVideo &&
