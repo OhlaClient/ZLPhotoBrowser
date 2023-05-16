@@ -367,7 +367,7 @@ public class ZLPhotoPreviewSheet: UIView {
         let config = ZLPhotoConfiguration.default()
         ZLPhotoManager.getCameraRollAlbum(allowSelectImage: config.allowSelectImage, allowSelectVideo: config.allowSelectVideo) { [weak self] cameraRoll in
             guard let `self` = self else { return }
-            var totalPhotos = ZLPhotoManager.fetchPhoto(in: cameraRoll.result, ascending: false, allowSelectImage: config.allowSelectImage, allowSelectVideo: config.allowSelectVideo, limitCount: config.maxPreviewCount)
+            var totalPhotos = ZLPhotoManager.fetchPhoto(in: cameraRoll.result, ascending: false, allowSelectImage: config.allowSelectImage, allowSelectGif: config.allowSelectGif, allowSelectVideo: config.allowSelectVideo, limitCount: config.maxPreviewCount)
             markSelected(source: &totalPhotos, selected: &self.arrSelectedModels)
             self.arrDataSources.removeAll()
             self.arrDataSources.append(contentsOf: totalPhotos)
@@ -987,6 +987,7 @@ extension ZLPhotoPreviewSheet: UICollectionViewDataSource, UICollectionViewDeleg
                 in: cameraRoll.result,
                 ascending: uiConfig.sortAscending,
                 allowSelectImage: config.allowSelectImage,
+                allowSelectGif: config.allowSelectGif,
                 allowSelectVideo: config.allowSelectVideo
             )
             markSelected(source: &totalPhotos, selected: &self.arrSelectedModels)

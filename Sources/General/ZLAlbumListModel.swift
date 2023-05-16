@@ -73,6 +73,7 @@ public class ZLAlbumListModel: NSObject {
             in: result,
             ascending: ZLPhotoUIConfiguration.default().sortAscending,
             allowSelectImage: ZLPhotoConfiguration.default().allowSelectImage,
+            allowSelectGif: ZLPhotoConfiguration.default().allowSelectGif,
             allowSelectVideo: ZLPhotoConfiguration.default().allowSelectVideo
         )
         self.models.removeAll()

@@ -101,7 +101,7 @@ public class ZLPhotoManager: NSObject {
     }
     
     /// Fetch photos from result.
-    public class func fetchPhoto(in result: PHFetchResult<PHAsset>, ascending: Bool, allowSelectImage: Bool, allowSelectVideo: Bool, limitCount: Int = .max) -> [ZLPhotoModel] {
+    @objc public class func fetchPhoto(in result: PHFetchResult<PHAsset>, ascending: Bool, allowSelectImage: Bool, allowSelectGif: Bool, allowSelectVideo: Bool, limitCount: Int = .max) -> [ZLPhotoModel] {
         var models: [ZLPhotoModel] = []
         let option: NSEnumerationOptions = ascending ? .init(rawValue: 0) : .reverse
         var count = 1
@@ -110,6 +110,9 @@ public class ZLPhotoManager: NSObject {
             let m = ZLPhotoModel(asset: asset)
             
             if m.type == .image, !allowSelectImage {
+                return
+            }
+            if m.type == .gif, !allowSelectGif {
                 return
             }
             if m.type == .video, !allowSelectVideo {
